@@ -1,0 +1,6 @@
+.uploadform {
+    grid-column: 1 / 5;
+    grid-row: 2;
+    padding: 1em;
+    margin: 2px;
+}

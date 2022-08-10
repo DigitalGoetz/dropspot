@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dropspot-deployment
+  namespace: dropspot
+  labels:
+    deployment: dropspot
+spec:
+  selector:
+    matchLabels:
+      deployment: dropspot
+  template:
+    metadata:
+      labels:
+        deployment: dropspot
+        backend: dropspot-api
+    spec:
+      containers:
+        - name: dropspot
+          imagePullPolicy: Always
+          image: dropspot:0.0.1
+          resources:
+            limits:
+              memory: 256Mi
+              cpu: 200m
+          ports:
+            - containerPort: 3000
