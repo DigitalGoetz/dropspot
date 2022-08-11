@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dropspot-ui-deployment
+  namespace: dropspot
+  labels:
+    deployment: dropspot-ui
+spec:
+  selector:
+    matchLabels:
+      deployment: dropspot-ui
+  template:
+    metadata:
+      labels:
+        deployment: dropspot-ui
+        backend: dropspot-ui
+    spec:
+      containers:
+        - name: dropspot-ui
+          imagePullPolicy: IfNotPresent
+          image: digitalgoetz/dropspot-ui:0.0.2
+          resources:
+            limits:
+              memory: 1024Mi
+          ports:
+            - containerPort: 3000

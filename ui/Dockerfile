@@ -4,8 +4,8 @@ WORKDIR /application
 
 COPY . /application/
 
-RUN mkdir -p /dropspot && npm install
+RUN npm install
 
-EXPOSE 4500
+EXPOSE 4501
 
 CMD [ "npm", "start" ]

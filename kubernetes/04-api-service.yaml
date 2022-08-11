@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: dropspot-api-service
+  namespace: dropspot
+spec:
+  selector:
+    backend: dropspot-api
+  ports:
+    - name: api
+      protocol: TCP
+      port: 4500
+      targetPort: 4500

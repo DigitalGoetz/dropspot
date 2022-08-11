@@ -3,3 +3,9 @@
     grid-row: 3 / 6;
     padding: 1em;
 }
+
+.fileLabel {
+    padding-top: 8px;
+    margin-left: 1em;
+    margin-right: 1em;
+}

@@ -1,12 +1,13 @@
 import React from "react";
 import "./FileList.css"
 import axios from 'axios';
+import { RuxButton, RuxButtonGroup } from "@astrouxds/react";
 
 
-const FileList = ({ files }) => {
+const FileList = ({ files, toggleRefresh }) => {
 
     const getfile = (e) => {
-        let filename = e.target.innerText;
+        let filename = e.target.attributes.value['value'];
 
         axios({
             url: process.env.REACT_APP_API + "/" + filename,
@@ -22,10 +23,29 @@ const FileList = ({ files }) => {
         });
     }
 
+    const deleteFile = (e) => {
+        let filename = e.target.attributes.value['value'];
+
+        axios({
+            url: process.env.REACT_APP_API + "/" + encodeURI(filename),
+            method: 'DELETE'
+        }).then((response) => {
+            toggleRefresh();
+        });
+    }
+
     return (
         <div className="filelist">
             {files.map(x => {
-                return <p key={x} onClick={getfile}>{x}</p>
+                return (
+                    <div className="fileContainer" key={x}>
+                        <RuxButtonGroup>
+                            <p className="fileLabel">{x}</p>
+                            <RuxButton value={x} onClick={getfile}>Download</RuxButton>
+                            <RuxButton value={x} onClick={deleteFile}>Delete</RuxButton>
+                        </RuxButtonGroup>
+                    </div>
+                )
             })}
         </div>
     )

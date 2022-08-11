@@ -9,7 +9,11 @@ const UploadForm = () => {
     // const refContainer = useRef("uploadForm");
     const [selectedFile, setSelectedFile] = useState(null);
     const [files, setFiles] = useState([]);
+    const [refresh, setRefresh] = useState(true);
 
+    const toggleRefresh = () => {
+        setRefresh(!refresh);
+    }
 
     useEffect(() => {
         const listUrl = process.env.REACT_APP_API;
@@ -19,17 +23,17 @@ const UploadForm = () => {
                 const response = await fetch(listUrl);
                 const json = await response.json();
                 setFiles(json);
-                console.log(files)
             } catch (error) {
                 console.log("error", error);
             }
         };
 
         fetchData();
-    }, [selectedFile]);
+    }, [refresh]);
 
     const handleFileInput = (e) => {
         setSelectedFile(e.target.files[0])
+        toggleRefresh();
     }
 
     const submitForm = function (e) {
@@ -40,8 +44,10 @@ const UploadForm = () => {
         axios
             .post(process.env.REACT_APP_API, formData)
             .then((res) => {
-                setSelectedFile(null);
-                alert("File Uploaded Successfully")
+                setSelectedFile("");
+                toggleRefresh();
+                const input = document.querySelector('#fileselector');
+                input.value = "";
             })
             .catch((err) => alert("File Upload Error"));
     };
@@ -50,6 +56,7 @@ const UploadForm = () => {
         <div>
             <form>
                 <input
+                    id='fileselector'
                     type="file"
                     name="uploadedFile"
                     onChange={handleFileInput}
@@ -58,7 +65,7 @@ const UploadForm = () => {
 
             </form>
 
-            <FileList files={files} setFiles={setFiles} />
+            <FileList files={files} toggleRefresh={toggleRefresh} />
         </div>
 
     )

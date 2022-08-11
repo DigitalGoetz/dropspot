@@ -17,6 +17,7 @@ app.use(cors());
 app.use(fileUpload());
 
 app.get('/files', function (req, res) {
+  console.log("Providing content listing");
   let files = fs.readdirSync(dir, function (err, files) {
 
     if (err) {
@@ -32,17 +33,21 @@ app.get('/files', function (req, res) {
 });
 
 app.get('/files/:filename', function (req, res) {
+  console.log("Providing File");
   let filename = decodeURI(req.params.filename);
   res.download(dir + filename);
 });
 
 app.delete('/files/:filename', function (req, res) {
+  console.log("Deleting File")
   let filename = decodeURI(req.params.filename);
   fs.rmSync(dir + filename);
-  res.status(200)
+  console.log("Delete Complete")
+  return res.status(200).send("File deleted.");
 });
 
 app.post('/files', function (req, res) {
+  console.log("Uploading File")
   let uploadedFile;
   let uploadPath;
 
@@ -50,10 +55,7 @@ app.post('/files', function (req, res) {
     return res.status(400).send('No files were uploaded.');
   }
 
-  // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
-  console.log(req.files)
   uploadedFile = req.files.uploadedFile;
-  console.log(uploadedFile)
   uploadPath = dir + uploadedFile.name;
 
   // Use the mv() method to place the file somewhere on your server

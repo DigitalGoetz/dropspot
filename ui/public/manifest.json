@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Dropspot",
+  "name": "Dropspot: Simple File Dropbox",
   "icons": [
     {
       "src": "favicon.ico",
