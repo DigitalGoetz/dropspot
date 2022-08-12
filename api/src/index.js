@@ -15,6 +15,7 @@ if (!fs.existsSync(dir)) {
 
 app.use(cors());
 app.use(fileUpload());
+app.use('/web', express.static('web'));
 
 app.get('/files', function (req, res) {
   console.log("Providing content listing");
