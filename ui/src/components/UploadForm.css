@@ -4,3 +4,20 @@
     padding: 1em;
     margin: 2px;
 }
+
+input[type="file"] {
+    display: none;
+}
+
+.rux-style {
+    margin-left: 10px;
+    margin-bottom: 5px;
+}
+
+.fa-icon {
+    padding-right: 1em;
+}
+
+.bork {
+    padding-top: 8px;
+}
