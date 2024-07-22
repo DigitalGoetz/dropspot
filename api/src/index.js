@@ -17,6 +17,11 @@ app.use(cors());
 app.use(fileUpload());
 app.use('/web', express.static('web'));
 
+
+app.get("/", function (req, res) {
+  res.redirect("/web");
+});
+
 app.get('/files', function (req, res) {
   console.log("Providing content listing");
   let files = fs.readdirSync(dir, function (err, files) {
@@ -69,7 +74,7 @@ app.post('/files', function (req, res) {
   });
 });
 
-app.listen(port, () => {
+app.listen(port, "0.0.0.0", () => {
   console.log(`Example app listening on port ${port}`);
 });
 
