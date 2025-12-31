@@ -18,9 +18,9 @@ spec:
       containers:
         - name: dropspot-api
           imagePullPolicy: IfNotPresent
-          image: digitalgoetz/dropspot-api:0.0.2
+          image: digitalgoetz/dropspot-api:0.1.0
           resources:
             limits:
               memory: 1024Mi
           ports:
-            - containerPort: 3000
+            - containerPort: 4500

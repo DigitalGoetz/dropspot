@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export VERSION=0.0.4
+source ./scripts/environment.sh
 
 cd ui
 npm install
@@ -12,6 +12,7 @@ mv ui/build/* api/web/
 
 cd api
 docker build -t digitalgoetz/dropspot:$VERSION .
+# docker push digitalgoetz/dropspot:$VERSION
 cd ..
 
 

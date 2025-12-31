@@ -21,3 +21,35 @@ input[type="file"] {
 .bork {
     padding-top: 8px;
 }
+
+.capacity {
+    margin: 0.75em 0 1.25em;
+    padding-left: 10px;
+}
+
+.capacityLabel {
+    margin-bottom: 0.5em;
+    font-size: 0.95em;
+    opacity: 0.85;
+}
+
+.capacityProgress {
+    width: 320px;
+    max-width: 100%;
+}
+
+.uploadProgress {
+    margin: 0 0 1.25em;
+    padding-left: 10px;
+}
+
+.uploadProgressLabel {
+    margin-bottom: 0.5em;
+    font-size: 0.95em;
+    opacity: 0.85;
+}
+
+.uploadProgressBar {
+    width: 320px;
+    max-width: 100%;
+}
